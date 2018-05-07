@@ -10,9 +10,9 @@ var plants = require("./plants/");
 
 app
   .use(express.static("/static"))
-  .use("/", homepage)
   .use("/fish", fish.paths)
   .use("/plants", plants.paths)
+  .use("/", homepage)
   .listen(3000, "0.0.0.0", serverSetup);
 
 nunjucks.configure("templates", {

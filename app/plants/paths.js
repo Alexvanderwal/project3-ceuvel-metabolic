@@ -6,7 +6,7 @@ app.use(express.json()); // to support JSON-encoded bodies
 // app.use(express.urlencoded()); // to support URL-encoded bodies
 
 router.all("/", function(req, res) {
-  res.send("detailview for plants will be here");
+  res.render("plants/detail.html");
 });
 
 module.exports = router;
