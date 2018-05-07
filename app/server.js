@@ -4,11 +4,13 @@ const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 var router = express.Router();
+var fish = require("./fish/");
 //0.0.0.0 instead of 127.0.0.1 forces the server to redirect to the local endpoints instead of the exposed local endpoints
 
 app
   .use(express.static("/static"))
-  .get("/", homepage)
+  .use("/", homepage)
+  .use("/fish", fish.paths)
   .listen(3000, "0.0.0.0", serverSetup);
 
 nunjucks.configure("templates", {
