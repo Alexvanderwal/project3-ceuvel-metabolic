@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon server.js -e js,html,nj,css,htm --watch app",
- 
     "start": "nodemon"
   },
   "repository": {
@@ -24,7 +23,9 @@
   "homepage": "https://github.com/Cascuna/project2-ceuvel-metabolic#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "nodemon": "^1.17.4"
+    "nodemon": "^1.17.4",
+    "nunjucks": "^3.1.2",
+    "socket.io": "^2.1.0"
   },
   "devDependencies": {
     "prettier": "^1.12.1",
