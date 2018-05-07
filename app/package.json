@@ -1,0 +1,33 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Project to visualize and give meaning to the data that is being collect by \"The Ceuvel\" with a focus on their metabolic lab ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon server.js -e js,html,nj,css,htm --watch app",
+ 
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cascuna/project2-ceuvel-metabolic.git"
+  },
+  "keywords": [
+    "durability"
+  ],
+  "author": "Alex van der wal & James Perrone",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Cascuna/project2-ceuvel-metabolic/issues"
+  },
+  "homepage": "https://github.com/Cascuna/project2-ceuvel-metabolic#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.17.4"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.1",
+    "prettier-check": "^2.0.0"
+  }
+}
