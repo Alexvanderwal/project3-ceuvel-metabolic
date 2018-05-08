@@ -10,7 +10,7 @@ var plants = require("./plants/");
 
 app
   .set("view engine", "html")
-  .use(express.static("/static"))
+  .use(express.static("./static"))
   .use("/fish", fish.paths)
   .use("/plants", plants.paths)
   .use("/", homepage)
