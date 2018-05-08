@@ -1,5 +1,5 @@
 :root {
-  --shipHullMargin: -7rem;
+  --shipHullMargin: -14vh;
   --defaultBlack: #333333;
   --seperatorBorderWidth: .3rem;
 }
@@ -110,7 +110,7 @@ body {
 .restroom .toilet {
   filter: drop-shadow( -2px 0 2px rgba(0, 0, 0, .4));
   /* box-shadow: 0 5px 5px 0 black; */
-  width: 80%;
+  width: 40%;
   height: 50%;
 }
 
@@ -192,16 +192,30 @@ body {
   /* opacity: .9; */
 }
 
-.riverWater.backLayer {
-  z-index: 0;
-}
-
 .riverWater.frontLayer {
   z-index: 3;
-  opacity: .75;
+  opacity: 1;
+  height: 33%;
+  background: url('/img/waterLayer-1.svg') repeat-x;
+  width: 100vw;
 }
 
+
+
 .riverWater.middleLayer {
+  background-image: url('/img/waterLayer-2.svg');
+  background-size: cover;
   z-index: 2;
-  opacity: .75;
+  height: 30%;
+  opacity: .90;
+  width: 100vw;
+
+}
+
+.riverWater.backLayer {
+  opacity: 1;
+  z-index: 0;
+  height: 40%;
+  background: url('/img/waterLayer-3.svg') repeat-x;
+  width: 100vw;
 }
