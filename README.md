@@ -20,3 +20,7 @@ The project aims to strengthen this vision, showing the relation between their m
 ## Setup
 
 ## How to customize
+
+
+## Disclaimer
+All images that are being used are all from [freekpik](https://www.freepik.com/) and [jouliette](https://www.jouliette.net/map.html)
