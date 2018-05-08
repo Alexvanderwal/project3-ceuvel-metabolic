@@ -44,7 +44,7 @@ body {
   width: 90%;
   display: grid;
   grid-template-rows: 2fr 1fr 3fr 1fr;
-  grid-template-columns: 4fr 2fr 2fr;
+  grid-template-columns: 4fr 1fr 2fr;
 }
 
 .fish {
@@ -92,6 +92,7 @@ body {
 .plantsContainer .row:first-child {
   padding-left: 1rem;
 }
+
 
 .plantsContainer .row:last-child {
   padding-right: 1rem;
