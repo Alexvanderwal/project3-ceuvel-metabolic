@@ -9,6 +9,7 @@ var plants = require("./plants/");
 //0.0.0.0 instead of 127.0.0.1 forces the server to redirect to the local endpoints instead of the exposed local endpoints
 
 app
+  .set("view engine", "html")
   .use(express.static("/static"))
   .use("/fish", fish.paths)
   .use("/plants", plants.paths)
@@ -30,7 +31,7 @@ function socketConnection(socket) {
 }
 
 function homepage(request, response) {
-  response.send("This is a test");
+  response.render("index");
 }
 
 function serverSetup() {

@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '**/*.js && eslint **/*.js --fix",
+    "format": "prettier --write **/*.js && eslint **/*.js --fix",
     "nodemon": "nodemon server.js -e js,html,nj,css,htm --watch app",
-    "start": "npm run format && npm run nodemon"
+    "start": "npm run nodemon"
   },
   "repository": {
     "type": "git",
