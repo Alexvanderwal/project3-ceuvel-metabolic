@@ -11,13 +11,17 @@
  
    
 </head>
-<body>
+<body id="barba-wrapper">
+    <div class="barba-container"> 
     {% block body %}
         testing
     {% endblock %}
+</div>
+ 
 
     {% block javascript %}
-        <script src="./js/site.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js"></script>
+      <script src="./js/site.js"></script>
     {% endblock %}
 </body>
 </html>

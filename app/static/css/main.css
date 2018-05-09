@@ -18,13 +18,18 @@ html {
   padding: 0;
 }
 
-body {
-  align-items: center;
+.barba-container {
   display: flex;
-  height: 100vh;
   justify-content: center;
-  overflow: hidden;
+  align-items: center;
+  height: 100vh;
   width: 100vw;
+}
+
+body {
+ 
+  overflow: hidden;
+
 }
 
 /* Ship */
