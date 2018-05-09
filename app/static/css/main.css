@@ -44,6 +44,7 @@ main {
   transition: all 2s all;
   width: 100%;
   z-index: 1;
+  transition: .3s ease-in;
 }
 
 .readmore svg {
@@ -52,19 +53,20 @@ main {
   user-select: none;
   width: 7.5rem;
   z-index: -1;
+  transition: .3s ease-in;
 }
 
 /* Ship */
 
 .shipContainer {
   align-items: center;
-  animation: sailIn 2.5s ease-out 0.25s forwards, shipWave 3s linear 2.5s infinite;
+  animation: shipWave 3s linear infinite;
   display: flex;
   flex-direction: column;
   height: 95%;
   padding-top: calc(var(--shipHullMargin) * -1);
   position: relative;
-  transform: translateX(-100%);
+  /* transform: translateX(-100%); */
   width: 80%;
   z-index: 1;
 }
@@ -304,10 +306,11 @@ main {
 
 @keyframes sailOut {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%);
+
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
 }
 
