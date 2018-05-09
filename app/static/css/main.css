@@ -19,6 +19,7 @@ html {
 }
 
 body {
+  animation: dayToNight 20s infinite;
   overflow: hidden;
 }
 
@@ -74,7 +75,6 @@ main {
   margin-top: var(--shipHullMargin);
   position: relative;
   width: 100%;
-
 }
 
 .shipRooms {
@@ -258,31 +258,39 @@ main {
 }
 
 .scalingSvg {
-    z-index: 999 !important;
+  z-index: 999 !important;
 }
 
 @keyframes present {
-    0% { opacity: 0;}
-    100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-    0% {opacity: 1;}
-    100% {opacity: 1;}
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
+
 /* Animations */
 
-
 @keyframes scaleUp {
-    0% {
-        transform: scale(15);
-        top: 50%;
-        left: 50%;
-    }
-    100% {      
-        top: 0%;
-        left: 0%;
-    }
+  0% {
+    transform: scale(15);
+    top: 50%;
+    left: 50%;
+  }
+  100% {
+    top: 0%;
+    left: 0%;
+  }
 }
 
 @keyframes sailIn {
@@ -291,6 +299,15 @@ main {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes sailOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -327,5 +344,20 @@ main {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes dayToNight {
+  from {
+    background: #40405c;
+  }
+  25% {
+    background: #88BEF5;
+  }
+  75% {
+    background: #40405c;
+  }
+  to {
+    background: #40405c;
   }
 }
