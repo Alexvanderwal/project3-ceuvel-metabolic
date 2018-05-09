@@ -207,25 +207,20 @@ body {
 
 .riverWater.frontLayer {
   background: url('/img/waterLayer-1.svg') repeat-x;
-  height: 33%;
-  opacity: 1;
-  width: 100vw;
+  height: 25%;
+  opacity: .75;
   z-index: 3;
 }
 
 .riverWater.middleLayer {
   background-image: url('/img/waterLayer-2.svg');
   background-size: cover;
-  height: 30%;
-  opacity: .90;
-  width: 100vw;
+  height: 35%;
+  opacity: .55;
   z-index: 2;
 }
 
 .riverWater.backLayer {
-  opacity: 1;
-  z-index: 0;
-  height: 40%;
   background: url('/img/waterLayer-3.svg') repeat-x;
-  width: 100vw;
+  height: 45%;
 }
