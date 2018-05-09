@@ -27,6 +27,23 @@ body {
   width: 100vw;
 }
 
+.readMoreContainer {
+  align-items: center;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.readMoreContainer a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 /* Ship */
 
 .shipContainer {
@@ -114,6 +131,7 @@ body {
   display: flex;
   grid-column: 2;
   grid-row: 3 / 4;
+  position: relative;
 }
 
 .restroom .toilet {
@@ -131,6 +149,7 @@ body {
   grid-column: 3;
   grid-row: 3;
   justify-content: flex-end;
+  position: relative;
 }
 
 .restaurant .chair {
