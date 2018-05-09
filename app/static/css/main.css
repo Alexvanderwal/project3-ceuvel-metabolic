@@ -22,7 +22,7 @@ body {
   overflow: hidden;
 }
 
-.barba-container {
+main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,9 +45,9 @@ body {
   z-index: 1;
 }
 
-.readmore:hover {
+/* .readmore:hover {
   background-color: rgba(0, 0, 0, .5)
-}
+} */
 
 .readmore svg {
   height: 7.5rem;
@@ -71,11 +71,12 @@ body {
 }
 
 .shipBody {
+  user-select: none;
   height: 50%;
   margin-top: var(--shipHullMargin);
   position: relative;
   width: 100%;
-  z-index: 5;
+
 }
 
 .shipRooms {
@@ -253,21 +254,28 @@ body {
   height: 45%;
 }
 
+.scalingSvg {
+    z-index: 999 !important;
+}
+
+@keyframes present {
+    0% { opacity: 0;}
+    100% {opacity: 1;}
+}
 
 @keyframes fadeIn {
-    0% {opacity: 0;}
+    0% {opacity: 1;}
     100% {opacity: 1;}
   }
 
 @keyframes scaleUp {
     0% {
-        opacity: 1 !important;
-        z-index: 999;
-        transform: scale(2) translate(50%, 50%);
+        transform: scale(15);
+        top: 50%;
+        left: 50%;
     }
-
-    100% {
-        opacity: 1 !important;  
-        z-index: 999;       
+    100% {      
+        top: 0%;
+        left: 0%;
     }
 }
