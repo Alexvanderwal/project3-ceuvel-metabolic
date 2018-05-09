@@ -1,7 +1,7 @@
 :root {
-  --shipHullMargin: -7rem;
   --defaultBlack: #333333;
   --seperatorBorderWidth: .3rem;
+  --shipHullMargin: -7rem;
 }
 
 html {
@@ -19,132 +19,134 @@ html {
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
   overflow: hidden;
+  width: 100vw;
 }
 
+/* Ship */
 .shipContainer {
   align-items: center;
   display: flex;
-  position: relative;
   flex-direction: column;
   height: 95%;
   padding-top: calc(var(--shipHullMargin) * -1);
+  position: relative;
   width: 80%;
   z-index: 1;
 }
 
 .shipBody {
   height: 50%;
-  width: 100%;
   margin-top: var(--shipHullMargin);
   position: relative;
+  width: 100%;
 }
 
 .shipRooms {
+  display: grid;
+  grid-template-columns: 4fr 1fr 2fr;
+  grid-template-rows: 2fr 1fr 3fr 1fr;
   height: 70%;
   width: 90%;
-  display: grid;
-  grid-template-rows: 2fr 1fr 3fr 1fr;
-  grid-template-columns: 4fr 1fr 2fr;
 }
 
+.shipDeck {
+  background-color: #ACACAC;
+  grid-column: 2 / span 3;
+  grid-row: 4;
+}
+
+/* Fish Section */
 .fish {
-  grid-row: 3 / span 4;
-  grid-column: 1;
-  background-color: #F0EDFF;
-  display: flex;
-  justify-content: center;
   align-items: flex-end;
-  border: var(--seperatorBorderWidth) solid var(--defaultBlack);
+  background-color: #F0EDFF;
   border-top: .9rem solid var(--defaultBlack);
+  border: var(--seperatorBorderWidth) solid var(--defaultBlack);
+  display: flex;
+  grid-column: 1;
+  grid-row: 3 / span 4;
+  justify-content: center;
   position: relative;
 }
 
 .fish::after {
-  content: '';
-  position: absolute;
-  display: block;
-  top: -5px;
-  left: -3px;
   background-image: url('/img/hopper.svg');
-  height: 100%;
-  width: 101%;
   background-repeat: no-repeat;
+  content: '';
+  display: block;
+  height: 100%;
+  left: -3px;
+  position: absolute;
+  top: -5px;
+  width: 101%;
 }
 
 .fishTank {
-  width: 70%;
-  height: 80%;
+  align-items: flex-end;
   background-color: #C6E5EC;
   border-left: var(--seperatorBorderWidth) solid var(--defaultBlack);
   border-right: var(--seperatorBorderWidth) solid var(--defaultBlack);
   display: flex;
-  align-items: flex-end;
+  height: 80%;
+  width: 70%;
 }
 
 .fishTank .water {
+  background-color: #3EA3BA;
   height: 70%;
   width: 100%;
-  background-color: #3EA3BA;
 }
 
+/* Restroom */
 .restroom {
-  grid-row: 3 / 4;
-  grid-column: 2;
-  background-color: #F3C6FF;
-  display: flex;
   align-items: flex-end;
-  background: url('/img/tiles.png') repeat;
+  background: #F3C6FF url('/img/tiles.png') repeat;
   background-size: 50%;
-  background-position: 0;
-  border-right: var(--seperatorBorderWidth) solid brown;
-  border-top: var(--seperatorBorderWidth) solid brown;
-  /* justify-content: center; */
+  border-right: var(--seperatorBorderWidth) solid #8a5434;
+  border-top: var(--seperatorBorderWidth) solid #8a5434;
+  display: flex;
+  grid-column: 2;
+  grid-row: 3 / 4;
 }
 
 .restroom .toilet {
-  filter: drop-shadow( -2px 0 2px rgba(0, 0, 0, .4));
-  /* box-shadow: 0 5px 5px 0 black; */
-  width: 80%;
+  filter: drop-shadow( -1px 0 2px rgba(0, 0, 0, .25));
   height: 50%;
+  width: 80%;
 }
 
+/* Restaurant */
 .restaurant {
-  grid-row: 3;
-  grid-column: 3;
+  align-items: flex-end;
   background-color: transparent;
   display: flex;
-  align-items: flex-end;
+  grid-column: 3;
+  grid-row: 3;
   justify-content: flex-end;
 }
 
 .restaurant .chair {
+  margin-bottom: -1px;
   width: 20%;
 }
 
 .restaurant .table {
-  width: 50%;
   margin: 0 .4em;
+  width: 50%;
 }
 
-.shipDeck {
-  grid-row: 4;
-  grid-column: 2 / span 3;
-  background-color: #ACACAC;
-}
-
+/* Plant Section */
 .plantsContainer {
-  grid-row: 1 / 3;
-  grid-column: 1;
   background-color: #FFCBA8;
+  border: var(--seperatorBorderWidth) solid var(--defaultBlack);
   display: flex;
   flex-direction: column;
-  border: var(--seperatorBorderWidth) solid var(--defaultBlack);
+  grid-column: 1;
+  grid-row: 1 / 3;
   position: relative;
   z-index: 1;
 }
@@ -155,10 +157,10 @@ body {
   background-repeat: no-repeat;
   content: '';
   display: block;
-  height: 4rem;
+  height: 5.5rem;
   left: 0;
   position: absolute;
-  top: -4.3rem;
+  top: -5.8rem;
   width: 100%;
   z-index: -1;
 }
@@ -185,23 +187,23 @@ body {
   margin-bottom: -1rem;
 }
 
+/* River */
 .riverWater {
-  position: absolute;
   bottom: -5rem;
+  position: absolute;
   width: 100vw;
-  /* opacity: .9; */
+}
+
+.riverWater.frontLayer {
+  opacity: .75;
+  z-index: 3;
+}
+
+.riverWater.middleLayer {
+  opacity: .75;
+  z-index: 2;
 }
 
 .riverWater.backLayer {
   z-index: 0;
-}
-
-.riverWater.frontLayer {
-  z-index: 3;
-  opacity: .75;
-}
-
-.riverWater.middleLayer {
-  z-index: 2;
-  opacity: .75;
 }
