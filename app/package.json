@@ -28,9 +28,10 @@
     "socket.io": "^2.1.0"
   },
   "devDependencies": {
-    "nodemon": "^1.17.4",
+    "barba.js": "^1.0.0",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.17.4",
     "prettier": "^1.12.1",
     "prettier-check": "^2.0.0"
   },
