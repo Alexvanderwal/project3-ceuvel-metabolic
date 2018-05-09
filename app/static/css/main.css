@@ -1,6 +1,6 @@
 :root {
   --defaultBlack: #333333;
-  --seperatorBorderWidth: .3rem;
+  --seperatorBorderWidth: 0.3rem;
   --shipHullMargin: -14vh;
 }
 
@@ -46,7 +46,7 @@ body {
 }
 
 .readmore:hover {
-  background-color: rgba(0, 0, 0, .5)
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .readmore svg {
@@ -61,11 +61,13 @@ body {
 
 .shipContainer {
   align-items: center;
+  animation: sailIn 2.5s ease-out 0.25s forwards, shipWave 3s linear infinite;
   display: flex;
   flex-direction: column;
   height: 95%;
   padding-top: calc(var(--shipHullMargin) * -1);
   position: relative;
+  transform: translateX(-100%);
   width: 80%;
   z-index: 1;
 }
@@ -87,7 +89,7 @@ body {
 }
 
 .shipDeck {
-  background-color: #ACACAC;
+  background-color: #acacac;
   grid-column: 2 / span 3;
   grid-row: 4;
 }
@@ -96,8 +98,8 @@ body {
 
 .fish {
   align-items: flex-end;
-  background-color: #F0EDFF;
-  border-top: .9rem solid var(--defaultBlack);
+  background-color: #f0edff;
+  border-top: 0.9rem solid var(--defaultBlack);
   border: var(--seperatorBorderWidth) solid var(--defaultBlack);
   display: flex;
   grid-column: 1;
@@ -107,9 +109,9 @@ body {
 }
 
 .fish::after {
-  background-image: url('/img/hopper.svg');
+  background-image: url("/img/hopper.svg");
   background-repeat: no-repeat;
-  content: '';
+  content: "";
   display: block;
   height: 100%;
   left: -3px;
@@ -120,7 +122,7 @@ body {
 
 .fishTank {
   align-items: flex-end;
-  background-color: #C6E5EC;
+  background-color: #c6e5ec;
   border-left: var(--seperatorBorderWidth) solid var(--defaultBlack);
   border-right: var(--seperatorBorderWidth) solid var(--defaultBlack);
   display: flex;
@@ -129,7 +131,7 @@ body {
 }
 
 .fishTank .water {
-  background-color: #3EA3BA;
+  background-color: #3ea3ba;
   height: 70%;
   width: 100%;
 }
@@ -138,7 +140,7 @@ body {
 
 .restroom {
   align-items: flex-end;
-  background: #F3C6FF url('/img/tiles.png') repeat;
+  background: #f3c6ff url("/img/tiles.png") repeat;
   background-size: 50%;
   border-right: var(--seperatorBorderWidth) solid #8a5434;
   border-top: var(--seperatorBorderWidth) solid #8a5434;
@@ -149,7 +151,7 @@ body {
 }
 
 .restroom .toilet {
-  filter: drop-shadow( -1px 0 2px rgba(0, 0, 0, .25));
+  filter: drop-shadow(-1px 0 2px rgba(0, 0, 0, 0.25));
   height: 50%;
   width: 40%;
 }
@@ -172,14 +174,14 @@ body {
 }
 
 .restaurant .table {
-  margin: 0 .4em;
+  margin: 0 0.4em;
   width: 50%;
 }
 
 /* Plant Section */
 
 .plantsContainer {
-  background-color: #FFCBA8;
+  background-color: #ffcba8;
   border: var(--seperatorBorderWidth) solid var(--defaultBlack);
   display: flex;
   flex-direction: column;
@@ -190,10 +192,10 @@ body {
 }
 
 .plantsContainer::after {
-  background-image: url('/img/shipSolarPanels.svg');
+  background-image: url("/img/shipSolarPanels.svg");
   background-position: center;
   background-repeat: no-repeat;
-  content: '';
+  content: "";
   display: block;
   height: 5.5rem;
   left: 0;
@@ -204,7 +206,7 @@ body {
 }
 
 .plantsContainer .row {
-  border-bottom: 1rem solid #AC9583;
+  border-bottom: 1rem solid #ac9583;
   display: grid;
   grid-column-gap: 1rem;
   grid-template-columns: repeat(10, 1fr);
@@ -234,40 +236,95 @@ body {
 }
 
 .riverWater.frontLayer {
-  background: url('/img/waterLayer-1.svg') repeat-x;
+  animation: waterWave 5s linear infinite;
+  background: url("/img/waterLayer-1.svg") repeat-x;
+  background-size: cover;
   height: 25%;
-  opacity: .75;
+  opacity: 0.75;
   z-index: 3;
 }
 
 .riverWater.middleLayer {
-  background-image: url('/img/waterLayer-2.svg');
+  animation: waterWaveReverse 5s linear infinite;
+  background-image: url("/img/waterLayer-2.svg");
   background-size: cover;
   height: 35%;
-  opacity: .55;
+  opacity: 0.55;
   z-index: 2;
 }
 
 .riverWater.backLayer {
-  background: url('/img/waterLayer-3.svg') repeat-x;
+  animation: waterWave 5s linear infinite;
+  background: url("/img/waterLayer-3.svg") repeat-x;
+  background-size: cover;
   height: 45%;
 }
 
+/* Animations */
 
 @keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
 
 @keyframes scaleUp {
-    0% {
-        opacity: 1 !important;
-        z-index: 999;
-        transform: scale(2) translate(50%, 50%);
-    }
+  0% {
+    opacity: 1 !important;
+    z-index: 999;
+    transform: scale(2) translate(50%, 50%);
+  }
 
-    100% {
-        opacity: 1 !important;  
-        z-index: 999;       
-    }
+  100% {
+    opacity: 1 !important;
+    z-index: 999;
+  }
+}
+
+@keyframes sailIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes waterWave {
+  0% {
+    background-position-x: 0;
+  }
+  50% {
+    background-position-x: 100%;
+  }
+  100% {
+    background-position-x: 0;
+  }
+}
+
+@keyframes waterWaveReverse {
+  0% {
+    background-position-x: 100%;
+  }
+  50% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
+
+@keyframes shipWave {
+  0% {
+    transform: translateY(5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(5%);
+  }
 }
