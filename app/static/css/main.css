@@ -45,10 +45,6 @@ body {
   z-index: 1;
 }
 
-.readmore:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .readmore svg {
   height: 7.5rem;
   position: absolute;
@@ -61,7 +57,7 @@ body {
 
 .shipContainer {
   align-items: center;
-  animation: sailIn 2.5s ease-out 0.25s forwards, shipWave 3s linear infinite;
+  animation: sailIn 2.5s ease-out 0.25s forwards, shipWave 3s linear 2.5s infinite;
   display: flex;
   flex-direction: column;
   height: 95%;
@@ -77,7 +73,6 @@ body {
   margin-top: var(--shipHullMargin);
   position: relative;
   width: 100%;
-  z-index: 5;
 }
 
 .shipRooms {
@@ -319,12 +314,12 @@ body {
 
 @keyframes shipWave {
   0% {
-    transform: translateY(5%);
-  }
-  50% {
     transform: translateY(0);
   }
-  100% {
+  50% {
     transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
