@@ -1,9 +1,10 @@
 {% extends "includes/main.html" %} {% block title %} This is the homepage {% endblock %} {% block body %}
+<main data-transition="fadeIn"> 
 <nav class="shipContainer">
   <div class="shipRooms">
-    <section class="plantsContainer">
+    <section class="plantsContainer" data-transition="scaleUp">
       <div class="readMoreContainer">
-        <a href="/plants">Read More</a>
+        <a href="/plants" >Read More</a>
       </div>
       <div class="row">
         <div class="plant">
@@ -170,7 +171,7 @@
     </section>
     <section class="fish">
       <div class="readMoreContainer">
-        <a href="/fish">Read More</a>
+        <a href="/fish" onclick="navigate(event)">Read More</a>
       </div>
       <div class="fishTank">
         <div class="water">
@@ -217,4 +218,5 @@
 <div class="riverWater frontLayer"></div>
 <div class="riverWater middleLayer"></div>
 <div class="riverWater backLayer"></div>
+</main>
 {% endblock %}

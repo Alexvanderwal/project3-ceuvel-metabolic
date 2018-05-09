@@ -241,3 +241,22 @@ body {
   background: url('/img/waterLayer-3.svg') repeat-x;
   height: 45%;
 }
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+@keyframes scaleUp {
+    0% {
+        opacity: 1 !important;
+        z-index: 999;
+        transform: scale(2) translate(50%, 50%);
+    }
+
+    100% {
+        opacity: 1 !important;  
+        z-index: 999;       
+    }
+}
