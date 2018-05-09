@@ -1,7 +1,7 @@
 :root {
   --defaultBlack: #333333;
   --seperatorBorderWidth: .3rem;
-  --shipHullMargin: -7rem;
+  --shipHullMargin: -14vh;
 }
 
 html {
@@ -28,6 +28,7 @@ body {
 }
 
 /* Ship */
+
 .shipContainer {
   align-items: center;
   display: flex;
@@ -61,6 +62,7 @@ body {
 }
 
 /* Fish Section */
+
 .fish {
   align-items: flex-end;
   background-color: #F0EDFF;
@@ -102,6 +104,7 @@ body {
 }
 
 /* Restroom */
+
 .restroom {
   align-items: flex-end;
   background: #F3C6FF url('/img/tiles.png') repeat;
@@ -116,10 +119,11 @@ body {
 .restroom .toilet {
   filter: drop-shadow( -1px 0 2px rgba(0, 0, 0, .25));
   height: 50%;
-  width: 80%;
+  width: 40%;
 }
 
 /* Restaurant */
+
 .restaurant {
   align-items: flex-end;
   background-color: transparent;
@@ -140,6 +144,7 @@ body {
 }
 
 /* Plant Section */
+
 .plantsContainer {
   background-color: #FFCBA8;
   border: var(--seperatorBorderWidth) solid var(--defaultBlack);
@@ -188,6 +193,7 @@ body {
 }
 
 /* River */
+
 .riverWater {
   bottom: -5rem;
   position: absolute;
@@ -195,15 +201,26 @@ body {
 }
 
 .riverWater.frontLayer {
-  opacity: .75;
+  background: url('/img/waterLayer-1.svg') repeat-x;
+  height: 33%;
+  opacity: 1;
+  width: 100vw;
   z-index: 3;
 }
 
 .riverWater.middleLayer {
-  opacity: .75;
+  background-image: url('/img/waterLayer-2.svg');
+  background-size: cover;
+  height: 30%;
+  opacity: .90;
+  width: 100vw;
   z-index: 2;
 }
 
 .riverWater.backLayer {
+  opacity: 1;
   z-index: 0;
+  height: 40%;
+  background: url('/img/waterLayer-3.svg') repeat-x;
+  width: 100vw;
 }
