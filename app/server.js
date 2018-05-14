@@ -157,26 +157,6 @@ amqp
     });
   });
 
-// // add this for better debuging
-// connection.on("error", function(e) {
-//   console.log("Error from amqp: ", e);
-// });
-
-// // Wait for connection to become established.
-// connection.on("ready", function() {
-//   // Use the default 'amq.topic' exchange
-//   connection.queue("my-queue", function(q) {
-//     // Catch all messages
-//     q.bind("#");
-
-//     // Receive messages
-//     q.subscribe(function(message) {
-//       // Print messages to stdout
-//       console.log(message);
-//     });
-//   });
-// });
-
 var restaurant = require("./restaurant/");
 var restroom = require("./restroom/");
 //0.0.0.0 instead of 127.0.0.1 forces the server to redirect to the local endpoints instead of the exposed local endpoints
@@ -201,6 +181,30 @@ io.on("connection", socketConnection);
 
 function socketConnection(socket) {
   console.log("User is connected");
+  socket.emit("crop data", {
+    plants: {
+      lettuce: {
+        perM2: 5,
+        weightInKg: 0.36,
+        totalM2: 22.5,
+        yield: { lastMonth: 50, currentMonth: 15 }
+      },
+      herbs: {
+        perM2: 5,
+        weightInKg: 0.4,
+        totalM2: 22.5,
+        yield: { lastMonth: 20, currentMonth: 15 }
+      },
+      flowers: {
+        perM2: 5,
+        weightInKg: 0.15,
+        totalM2: 22.5,
+        yield: { lastMonth: 30, currentMonth: 15 }
+      }
+    },
+    harvestInterval: 3,
+    lastHarvested: "2018-05-14"
+  });
   socket.on("disconnect", function() {
     console.log("User disconnected");
   });

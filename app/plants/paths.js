@@ -5,6 +5,10 @@ const app = express();
 app.use(express.json()); // to support JSON-encoded bodies
 // app.use(express.urlencoded()); // to support URL-encoded bodies
 
+router.all("/dispatch-lettuce", function(req, res) {
+  res.render("plants/plant.html");
+});
+
 router.all("/", function(req, res) {
   res.render("plants/detail.html", { detailview: "True" });
 });
