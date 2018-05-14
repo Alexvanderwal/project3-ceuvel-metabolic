@@ -354,11 +354,13 @@ main {
 
 .data {
   display: flex;
+  font-weight: bold;
 }
 
 .data section {
-  width: 33.333%;
+  font-weight: normal;
   text-align: center;
+  width: 33.333%;
 }
 
 aside {

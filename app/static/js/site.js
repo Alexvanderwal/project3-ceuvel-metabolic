@@ -1,20 +1,11 @@
 var socket = io();
-// let HideShowTransition = Barba.BaseTransition.extend({
-//   start: function() {
-//     this.newContainerLoading.then(this.finish.bind(this));
-//     console.log("works");
-//   },
+var ph_level = document.getElementById('ph_level')
+var water_temperature = document.getElementById('water_temperature')
 
-//   finish: function() {
-//     document.body.scrollTop = 0;
-//     this.done();
-//   }
-// });
 
-// Barba.Pjax.getTransition = function() {
-//   return HideShowTransition;
-// };
 socket.on("amqp data", function(data) {
+  ph_level.innerHTML = data.ph;
+  water_temperature.innerHTML = data.water_temp
   console.log(data);
 });
 
@@ -31,17 +22,6 @@ function navigate(href) {
   }
   let shipBody = document.querySelector(".shipBody");
   shipBody.style.zIndex = 6;
-  //   let hexagonSvg = href.childNodes[1];
-  //   //   hexagonSvg.setAttribute("data-transition", "scaleUp");
-  //   href.setAttribute("data-transition", "scaleUp");
-  //   console.log(hexagonSvg);
-  //   hexagonSvg.querySelector(".svgText").style.opacity = 0;
-
-  //   href.classList.toggle("scalingSvg");
-  //   //   hexagonSvg.classList.toggle("scalingSvg");
-
-  //   console.log(hexagonSvg.classList);
-  //   console.log(href.childNodes[1]);
 }
 Barba.transitionLength = 1000;
 Barba.Pjax.start();
