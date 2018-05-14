@@ -60,7 +60,6 @@ nunjucks.configure("templates", {
 });
 
 io.on("connection", socketConnection);
-io.on('heartbeat', (data) => console.log(data.clg));
 
 function socketConnection(socket) {
   console.log("User is connected");
