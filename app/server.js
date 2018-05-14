@@ -6,6 +6,8 @@ const io = require("socket.io")(http);
 var router = express.Router();
 var fish = require("./fish/");
 var plants = require("./plants/");
+var restaurant = require("./restaurant/");
+var restroom = require("./restroom/");
 //0.0.0.0 instead of 127.0.0.1 forces the server to redirect to the local endpoints instead of the exposed local endpoints
 
 app
@@ -13,6 +15,8 @@ app
   .use(express.static("./static"))
   .use("/fish", fish.paths)
   .use("/plants", plants.paths)
+  .use("/restaurant", restaurant.paths)
+  .use("/restroom", restroom.paths)
   .use("/", homepage)
   .listen(3000, "0.0.0.0", serverSetup);
 
