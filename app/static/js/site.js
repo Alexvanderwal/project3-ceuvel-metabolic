@@ -36,15 +36,29 @@ fetch("http://localhost:3000/plants/dispatch-lettuce", {
     console.log(dummyDivLettuce);
   });
 
+let rows = {
+  lettuce: {
+    container: document.getElementById("lettuce"),
+    html: dummyDivLettuce
+  },
+  herbs: {
+    container: document.getElementById("herbs"),
+    html: dummyDivLettuce
+  },
+  flowers: {
+    container: document.getElementById("flowers"),
+    html: dummyDivLettuce
+  }
+};
+
 socket.on("crop data", function(data) {
-  let lettuceRow = document.getElementById("lettuce");
-  if (lettuceRow.children.length < 1) {
-    for (let i = 0; i < calcAmount(data.plants.lettuce, 10); i++) {
+  for (key in rows) {
+    for (let i = 0; i < calcAmount(data.plants[key], 10); i++) {
+      console.log(rows[key].html.innerHTML);
       let extraDiv = document.createElement("div");
-      console.log(dummyDivLettuce);
-      extraDiv.innerHTML = dummyDivLettuce;
-      console.log(extraDiv.innerHTML);
-      lettuceRow.appendChild(extraDiv);
+      extraDiv = rows[key].html.cloneNode(true);
+      rows[key].container.appendChild(extraDiv);
+      document.getElementById("plant-data").innerHTML = rows[key].container;
     }
   }
 });
@@ -63,5 +77,30 @@ function navigate(href) {
   let shipBody = document.querySelector(".shipBody");
   shipBody.style.zIndex = 6;
 }
-Barba.transitionLength = 1000;
+// Barba.transitionLength = 1000;
+
+var HideShowTransition = Barba.BaseTransition.extend({
+  start: function() {
+    this.newContainerLoading.then(this.finish.bind(this));
+  },
+
+  finish: function() {
+    document.body.scrollTop = 0;
+    this.done();
+  }
+});
 Barba.Pjax.start();
+Barba.Dispatcher.on("newPageReady", function(
+  currentStatus,
+  oldStatus,
+  container
+) {
+  for (key in rows) {
+    rows[key].temporaryData = rows[key].container.innerHTML;
+  }
+});
+Barba.Dispatcher.on("transitionCompleted", function(currentStatus) {
+  for (key in rows) {
+    document.getElementById(key).innerHTML = rows[key].temporaryData;
+  }
+});
