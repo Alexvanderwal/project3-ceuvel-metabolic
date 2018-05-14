@@ -3,6 +3,9 @@
     {% set readmoreHref = '/fish' %}
     {% include 'includes/readmore.html' %}
     {% endif %}
+    {% if detailview %}
+      <div id="lightOverlay"></div>
+    {% endif %}
   <div class="fishTank">
     <div class="water"></div>
   </div>
