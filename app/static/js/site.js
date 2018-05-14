@@ -1,12 +1,16 @@
 var socket = io();
-var ph_level = document.getElementById('ph_level')
-var water_temperature = document.getElementById('water_temperature')
-
 
 socket.on("amqp data", function(data) {
-  ph_level.innerHTML = data.ph;
-  water_temperature.innerHTML = data.water_temp
-  console.log(data);
+  try {
+    var water_temperature = document.getElementById("water_temperature");
+    var ph_level = document.getElementById("ph_level");
+    if (data.water_temp < 100) {
+      water_temperature.innerHTML = data.water_temp;
+    }
+    ph_level.innerHTML = data.ph;
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 function navigate(href) {
