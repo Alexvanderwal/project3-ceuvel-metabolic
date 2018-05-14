@@ -1,23 +1,4 @@
 var socket = io();
-
-// socket.on("amqp data", function(data) {
-//   try {
-//     var water_temperature = document.getElementById("water_temperature");
-//     var ph_level = document.getElementById("ph_level");
-//     if (data.water_temp < 100) {
-//       water_temperature.innerHTML = data.water_temp;
-//     }
-//     ph_level.innerHTML = data.ph;
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
-// lettuce: {
-//     perM2: 5,
-//     weightInKg: 0.36,
-//     totalM2: 22.5,
-//     yield: { lastMonth: 50, currentMonth: 15 }
-//   },
 function calcAmount(crop, amount) {
   return crop.perM2 * crop.totalM2 / amount;
 }
@@ -36,27 +17,23 @@ fetch("http://localhost:3000/plants/dispatch-lettuce", {
     console.log(dummyDivLettuce);
   });
 
-let rows = {
-  lettuce: {
-    container: document.getElementById("lettuce"),
-    html: dummyDivLettuce
-  },
-  herbs: {
-    container: document.getElementById("herbs"),
-    html: dummyDivLettuce
-  },
-  flowers: {
-    container: document.getElementById("flowers"),
-    html: dummyDivLettuce
-  }
-};
-
 socket.on("crop data", function(data) {
+  let herbsRow = document.getElementById("herbs");
+  let rows = {
+    lettuce: {
+      container: document.getElementById("lettuce"),
+      html: dummyDivLettuce
+    },
+    herbs: {
+      container: document.getElementById("herbs"),
+      html: dummyDivLettuce
+    }
+  };
+
   for (key in rows) {
     for (let i = 0; i < calcAmount(data.plants[key], 10); i++) {
-      console.log(rows[key].html.innerHTML);
       let extraDiv = document.createElement("div");
-      extraDiv = rows[key].html.cloneNode(true);
+      extraDiv.innerHTML = rows[key].html;
       rows[key].container.appendChild(extraDiv);
       document.getElementById("plant-data").innerHTML = rows[key].container;
     }
@@ -89,18 +66,16 @@ var HideShowTransition = Barba.BaseTransition.extend({
     this.done();
   }
 });
+var temporaryData;
 Barba.Pjax.start();
 Barba.Dispatcher.on("newPageReady", function(
   currentStatus,
   oldStatus,
   container
 ) {
-  for (key in rows) {
-    rows[key].temporaryData = rows[key].container.innerHTML;
-  }
+  console.log("test");
+  temporaryData = document.getElementById("lettuce").innerHTML;
 });
 Barba.Dispatcher.on("transitionCompleted", function(currentStatus) {
-  for (key in rows) {
-    document.getElementById(key).innerHTML = rows[key].temporaryData;
-  }
+  document.getElementById("lettuce").innerHTML = temporaryData;
 });

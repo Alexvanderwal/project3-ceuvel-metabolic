@@ -19,7 +19,6 @@ html {
 }
 
 body {
-  animation: dayToNight 20s infinite;
   overflow: hidden;
 }
 
@@ -136,6 +135,8 @@ main {
 .fishTank .water {
   background-color: #3ea3ba;
   height: 70%;
+  overflow: hidden;
+  position: relative;
   width: 100%;
 }
 
@@ -299,7 +300,7 @@ main {
 
 .detailsPage h1 {
   letter-spacing: 1px;
-  margin: 3rem 0 0;
+  margin: 8rem 0 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -357,10 +358,31 @@ main {
   font-weight: bold;
 }
 
+.data span {
+  font-weight: 400;
+}
+
 .data section {
-  font-weight: normal;
   text-align: center;
   width: 33.333%;
+}
+
+#lightOverlay {
+  background-color: #1A237E;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.catFish {
+  background: url("/img/fish.svg") no-repeat;
+  height: 35px;
+  position: absolute;
+  transition: top 10s linear, left 10s linear, transform 0.5s linear;
+  width: 100px;
 }
 
 aside {
@@ -456,20 +478,5 @@ aside img {
   }
   100% {
     transform: translateY(0);
-  }
-}
-
-@keyframes dayToNight {
-  from {
-    background: #40405c;
-  }
-  25% {
-    background: #88BEF5;
-  }
-  75% {
-    background: #40405c;
-  }
-  to {
-    background: #40405c;
   }
 }
