@@ -7,21 +7,7 @@ var router = express.Router();
 var fish = require("./fish/");
 var plants = require("./plants/");
 var amqp = require("amqplib");
-var ampqTest = require("amqp");
-// amqp://consumer:zHJR6WPpgUDLt5cF@rabbit.spectral.energy/
-// var connection = amqpTest.createConnection(
-//   {
-//     host: "rabbit.spectral.energy",
-//     login: "consumer",
-//     password: "zHJR6WPpgUDLt5cF@r",
-//     vhost: "/"
-//   },
-//   { defaultExchangeName: "aquaponics" }
-// );
-
-// connection.on("ready", function() {
-//   connection.exchange("aquaponics");
-// });
+var GoogleSpreadsheet = require("google-spreadsheet");
 
 amqp
   .connect("amqp://consumer:zHJR6WPpgUDLt5cF@rabbit.spectral.energy/")
@@ -40,6 +26,7 @@ amqp
             return channel.consume(
               _queue.queue,
               function(msg) {
+                io.emit("amqp data", msg.content.toString());
                 console.log(" [x] Received '%s'", msg.content.toString());
               },
               { noAck: true }
@@ -83,8 +70,9 @@ app
   .use("/plants", plants.paths)
   .use("/restaurant", restaurant.paths)
   .use("/restroom", restroom.paths)
-  .use("/", homepage)
-  .listen(3000, "0.0.0.0", serverSetup);
+  .use("/", homepage);
+
+http.listen(3000, "0.0.0.0", serverSetup);
 
 nunjucks.configure("templates", {
   autoescape: true,

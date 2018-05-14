@@ -1,3 +1,4 @@
+var socket = io();
 // let HideShowTransition = Barba.BaseTransition.extend({
 //   start: function() {
 //     this.newContainerLoading.then(this.finish.bind(this));
@@ -13,6 +14,9 @@
 // Barba.Pjax.getTransition = function() {
 //   return HideShowTransition;
 // };
+socket.on("amqp data", function(data) {
+  console.log(data);
+});
 
 function navigate(href) {
   //   console.log(href);
