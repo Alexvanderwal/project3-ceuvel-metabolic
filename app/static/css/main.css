@@ -299,7 +299,7 @@ main {
 
 .detailsPage h1 {
   letter-spacing: 1px;
-  margin: 3rem 0 0;
+  margin: 8rem 0 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -357,8 +357,11 @@ main {
   font-weight: bold;
 }
 
+.data span {
+  font-weight: 400;
+}
+
 .data section {
-  font-weight: normal;
   text-align: center;
   width: 33.333%;
 }
