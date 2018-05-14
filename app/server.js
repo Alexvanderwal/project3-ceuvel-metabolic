@@ -81,7 +81,7 @@ var sheet;
 //           // cells have a value, numericValue, and formula
 //           cell.value == "1";
 //           cell.numericValue == 1;
-//           cell.formula == "=ROW()";
+//           cell.formula == "=ROW()";https://drive.google.com/drive/recent
 
 //           // updating `value` is "smart" and generally handles things for you
 //           cell.value = 123;
@@ -127,35 +127,35 @@ var sheet;
 //   }
 // );
 
-// amqp
-//   .connect("amqp://consumer:zHJR6WPpgUDLt5cF@rabbit.spectral.energy/")
-//   .then(function(conn) {
-//     process.once("SIGINT", function() {
-//       conn.close();
-//     });
-//     return conn.createChannel().then(function(channel) {
-//       channel
-//         .assertExchange("aquaponics", "topic", { durable: true })
-//         .then(result => {
-//           var queue = channel.assertQueue("", { exclusive: true });
-//           queue = queue.then(function(_queue) {
-//             channel.bindQueue(_queue.queue, "aquaponics", "deceuvel");
-//             console.log(_queue);
-//             return channel.consume(
-//               _queue.queue,
-//               function(msg) {
-//                 io.emit("amqp data", msg.content.toString());
-//                 console.log(" [x] Received '%s'", msg.content.toString());
-//               },
-//               { noAck: true }
-//             );
-//           });
-//           return queue.then(function(_consumeOk) {
-//             console.log(" [*] Waiting for messages. To exit press CTRL+C");
-//           });
-//         });
-//     });
-//   });
+amqp
+  .connect("amqp://consumer:zHJR6WPpgUDLt5cF@rabbit.spectral.energy/")
+  .then(function(conn) {
+    process.once("SIGINT", function() {
+      conn.close();
+    });
+    return conn.createChannel().then(function(channel) {
+      channel
+        .assertExchange("aquaponics", "topic", { durable: true })
+        .then(result => {
+          var queue = channel.assertQueue("", { exclusive: true });
+          queue = queue.then(function(_queue) {
+            channel.bindQueue(_queue.queue, "aquaponics", "deceuvel");
+            console.log(_queue);
+            return channel.consume(
+              _queue.queue,
+              function(msg) {
+                io.emit("amqp data", JSON.parse(msg.content.toString()));
+                console.log(" [x] Received '%s'", msg.content.toString());
+              },
+              { noAck: true }
+            );
+          });
+          return queue.then(function(_consumeOk) {
+            console.log(" [*] Waiting for messages. To exit press CTRL+C");
+          });
+        });
+    });
+  });
 
 // // add this for better debuging
 // connection.on("error", function(e) {
