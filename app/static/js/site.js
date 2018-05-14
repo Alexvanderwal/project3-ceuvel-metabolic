@@ -1,4 +1,5 @@
 var socket = io();
+var fishCount = 8;
 var ph_table = {
   0: "Battery Acid (0)",
   1: "Stomach Acid (1)",
@@ -47,7 +48,9 @@ let rows = {
     html: dummyDivLettuce
   }
 };
-
+var water_temp;
+var phlevel;
+var lux;
 socket.on("amqp data", function(data) {
   try {
     var fishAmount = document.getElementById("fishAmount");
@@ -56,25 +59,40 @@ socket.on("amqp data", function(data) {
     var lightOverlay = document.getElementById("lightOverlay");
 
     if (data.water_temp < 100) {
-      waterTemperature.innerHTML = `${data.water_temp.toFixed(1)}C`;
+      water_temp = `${data.water_temp.toFixed(1)}C`;
+      waterTemperature.innerHTML = water_temp;
     }
 
-    fishAmount.innerHTML = 8;
-
-    phLevel.innerHTML = ph_table[Math.floor(data.ph)];
-    lightOverlay.style.opacity = 1 - (data.lux / 100000).toFixed(2) * 3;
+    fishAmount.innerHTML = fishCount;
+    phlevel = `${ph_table[Math.floor(data.ph)]}`;
+    phLevel.innerHTML = phlevel;
+    lux = `${1 - (data.lux / 100000).toFixed(2) * 3}`;
+    lightOverlay.style.opacity = lux;
   } catch (e) {
     console.log(e);
   }
 });
 
-function createFish() {
+let fishes = [];
+
+function spawnFish() {
+  for (; fishes.length < fishCount; ) {
+    createFish();
+  }
+  animateFish();
+  setInterval(function() {
+    animateFish();
+  }, 10000);
+}
+
+function createFish(fishType = "catFish") {
   var fishContainer = document.querySelector(".water");
   var fish = document.createElement("div");
-  fish.classList.add("catFish");
+  fish.classList.add(fishType);
   fish.dataset.oldX = 0;
+  fishes.push(fish);
   fishContainer.appendChild(fish);
-  animateFish();
+  return fish;
 }
 
 function animateFish() {
@@ -95,19 +113,21 @@ function animateFish() {
     }
     fish.dataset.oldX = newX;
   });
-  setInterval(function() {
-    animateFish();
-  }, 10000);
 }
+
+spawnFish();
 
 socket.on("crop data", function(data) {
   for (key in rows) {
     for (let i = 0; i < calcAmount(data.plants[key], 10); i++) {
-      console.log(rows[key].html.innerHTML);
       let extraDiv = document.createElement("div");
       extraDiv = rows[key].html.cloneNode(true);
-      rows[key].container.appendChild(extraDiv);
-      document.getElementById("plant-data").innerHTML = rows[key].container;
+      rows[key].container.appendChild(extraDiv.querySelector("div"));
+      rows[key].lastHarvested = data.plants[key].lastHarvested;
+      rows[key].lastYield = (
+        Math.floor(data.plants[key].yield.lastBatch) *
+        data.plants[key].weightInKg
+      ).toFixed(2);
     }
   }
 });
@@ -139,11 +159,6 @@ var HideShowTransition = Barba.BaseTransition.extend({
   }
 });
 
-for (let i = 0; i < 8; i++) {
-  console.log("dafuck");
-  createFish();
-}
-
 window.setInterval(function() {
   socket.emit("heartbeat", {
     msg: "I am NOT dead!"
@@ -162,6 +177,35 @@ Barba.Dispatcher.on("newPageReady", function(
 });
 Barba.Dispatcher.on("transitionCompleted", function(currentStatus) {
   for (key in rows) {
-    document.getElementById(key).innerHTML = rows[key].temporaryData;
+    if (document.getElementById(key)) {
+      document.getElementById(key).innerHTML = rows[key].temporaryData;
+      document.getElementById(`${key}Harvest`).innerHTML =
+        rows[key].lastHarvested;
+      document.getElementById(`${key}Yield`).innerHTML = rows[key].lastYield;
+    }
+  }
+  console.log(document.getElementById("fish-water"));
+  if (document.getElementById("fish-water")) {
+    console.log("wtf?");
+    for (let i = 0; i < fishCount; i++) {
+      console.log(fishes[i]);
+      document.getElementById("fish-water").appendChild(fishes[i]);
+    }
+  }
+
+  try {
+    if (document.getElementById("fishAmount")) {
+      var fishAmount = document.getElementById("fishAmount");
+      var waterTemperature = document.getElementById("waterTemperature");
+      var phLevel = document.getElementById("phLevel");
+      var lightOverlay = document.getElementById("lightOverlay");
+    }
+
+    waterTemperature.innerHTML = water_temp;
+    fishAmount.innerHTML = fishCount;
+    phLevel.innerHTML = ph_table[6];
+    lightOverlay.style.opacity = 0.5;
+  } catch (e) {
+    console.log(e);
   }
 });

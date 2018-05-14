@@ -4,12 +4,18 @@
     {% include 'includes/readmore.html' %}
     {% endif %}
   <div class="row" id="lettuce">
-    
+    {% if detailview %}
+    <h3>Aantal sla planten aanwezig</h3>
+    {% endif %}
   </div>
   <div class="row" id="herbs">
-    
+    {% if detailview %}
+      <h3>Aantal kruides aanwezig</h3>
+    {% endif %}
   </div>
   <div class="row" id="flowers">
-   
+    {% if detailview %}
+    <h3>Aantal eetbare bloemen aanwezig</h3>
+    {% endif %}
   </div>
 </section>

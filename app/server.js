@@ -69,23 +69,25 @@ function socketConnection(socket) {
         perM2: 5,
         weightInKg: 0.36,
         totalM2: 22.5,
-        yield: { lastMonth: 50, currentMonth: 15 }
+        yield: { lastBatch: 3 },
+        lastHarvested: "2018-05-14"
       },
       herbs: {
-        perM2: 2,
+        perM2: 5,
         weightInKg: 0.4,
         totalM2: 22.5,
-        yield: { lastMonth: 20, currentMonth: 15 }
+        yield: { lastBatch: 6.3 },
+        lastHarvested: "2018-05-14"
       },
       flowers: {
         perM2: 5,
         weightInKg: 0.15,
         totalM2: 22.5,
-        yield: { lastMonth: 30, currentMonth: 15 }
+        yield: { lastBatch: 2 },
+        lastHarvested: "2018-05-14"
       }
     },
-    harvestInterval: 3,
-    lastHarvested: "2018-05-14"
+    harvestInterval: 3
   });
   socket.on("disconnect", function() {
     console.log("User disconnected");
