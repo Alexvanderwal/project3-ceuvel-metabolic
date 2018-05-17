@@ -163,6 +163,7 @@ function createFish(fishType = "catFish") {
 }
 
 function animateFish() {
+  try{
   var containerHeight = document.querySelector(".water").offsetHeight;
   var containerWidth = document.querySelector(".water").offsetWidth;
   document.querySelectorAll(".catFish").forEach(fish => {
@@ -180,6 +181,9 @@ function animateFish() {
     }
     fish.dataset.oldX = newX;
   });
+  } catch(e) {
+    console.log(e)
+  }
 }
 
 spawnFish();
